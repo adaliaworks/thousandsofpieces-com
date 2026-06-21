@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thousands of Pieces — Every puzzle deserves a second life</title>
+<meta name="description" content="A community for puzzle lovers to swap finished boxes with people who actually want them — matched to your taste, shipped with care." />
+<meta property="og:title" content="Thousands of Pieces" />
+<meta property="og:description" content="Every puzzle deserves a second life. Swap finished puzzles with people who actually want them." />
+<meta property="og:image" content="https://thousandsofpieces.com/abbey.png" />
+<meta property="og:url" content="https://thousandsofpieces.com" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Thousands of Pieces" />
+<meta name="twitter:description" content="Every puzzle deserves a second life. Swap finished puzzles with people who actually want them." />
+<meta name="twitter:image" content="https://thousandsofpieces.com/abbey.png" />
+<script data-goatcounter="https://thousandsofpieces.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #1E2A3A;
+    --navy-mid: #2C3E52;
+    --slate: #4A5568;
+    --slate-light: #718096;
+    --cream: #F8F6F1;
+    --cream-dark: #EEE9DF;
+    --gold: #C9A84C;
+    --gold-light: #E8D5A0;
+    --blue-soft: #7BA7C4;
+    --blue-pale: #D6E8F2;
+    --white: #FFFFFF;
+    --text-dark: #1A2332;
+    --text-mid: #3D4E63;
+    --text-light: #6B7D93;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 3rem;
+    background: rgba(248, 246, 241, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--navy);
+    letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--gold); }
+  nav a {
+    font-size: 14px;
+    color: var(--text-mid);
+    text-decoration: none;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+  nav a:hover { color: var(--navy); }
+  .nav-links { display: flex; gap: 2rem; align-items: center; }
+  .nav-cta {
+    background: var(--navy);
+    color: var(--cream) !important;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--navy-mid) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 76px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 3rem 4rem 5rem;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--blue-pale);
+    color: #1E5070;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 1.75rem;
+    width: fit-content;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 7px; height: 7px;
+    background: #4A9CBF;
+    border-radius: 50%;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 400;
+    line-height: 1.12;
+    color: var(--navy);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-sub {
+    font-size: 17px;
+    color: var(--text-mid);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    max-width: 420px;
+    font-weight: 300;
+  }
+  .signup-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1.25rem;
+    max-width: 440px;
+  }
+  .signup-form input {
+    flex: 1;
+    padding: 13px 18px;
+    border: 1.5px solid rgba(201, 168, 76, 0.4);
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--text-dark);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .signup-form input:focus { border-color: var(--gold); }
+  .signup-form input::placeholder { color: var(--text-light); }
+  .btn-primary {
+    background: var(--navy);
+    color: var(--cream);
+    border: none;
+    border-radius: 10px;
+    padding: 13px 26px;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+    letter-spacing: 0.01em;
+  }
+  .btn-primary:hover { background: var(--navy-mid); transform: translateY(-1px); }
+  .hero-note {
+    font-size: 13px;
+    color: var(--text-light);
+  }
+  .hero-note strong { color: var(--gold); font-weight: 500; }
+
+  .hero-social {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(201, 168, 76, 0.2);
+  }
+  .hero-stat { }
+  .hero-stat .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--navy);
+    display: block;
+    line-height: 1;
+  }
+  .hero-stat .label {
+    font-size: 12px;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-top: 4px;
+    display: block;
+  }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(160deg, #E8EDF5 0%, #D6E4F0 50%, #C5D8E8 100%);
+  }
+  .hero-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+  .hero-img-placeholder {
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 3rem;
+    background: linear-gradient(160deg, #D6E8F2 0%, #C5D5E8 40%, #B8CBE0 100%);
+    position: relative;
+    min-height: 600px;
+  }
+  .hero-img-note {
+    background: rgba(255,255,255,0.85);
+    border: 1px dashed rgba(74,156,191,0.4);
+    border-radius: 12px;
+    padding: 16px 24px;
+    text-align: center;
+    color: #3D4E63;
+    font-size: 14px;
+    max-width: 280px;
+  }
+  .hero-img-note strong { display: block; margin-bottom: 4px; color: #1E2A3A; }
+
+  /* ABOUT / FOUNDER */
+  .founder-strip {
+    background: var(--navy);
+    color: var(--cream);
+    padding: 3.5rem 5rem;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+  }
+  .founder-quote {
+    flex: 1;
+  }
+  .quote-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    color: var(--gold);
+    line-height: 0.5;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .founder-quote blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-style: italic;
+    line-height: 1.5;
+    color: #E8E4DC;
+    margin-bottom: 1.5rem;
+  }
+  .founder-byline {
+    font-size: 14px;
+    color: var(--gold-light);
+    letter-spacing: 0.04em;
+  }
+  .founder-img-wrap {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--gold);
+    flex-shrink: 0;
+  }
+  .founder-img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+  .founder-img-placeholder {
+    width: 100%; height: 100%;
+    background: #2C3E52;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+  }
+
+  /* HOW IT WORKS */
+  .how {
+    padding: 6rem 5rem;
+    background: var(--white);
+  }
+  .section-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .how h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+    max-width: 480px;
+  }
+  .how-intro {
+    font-size: 16px;
+    color: var(--text-mid);
+    margin-bottom: 3.5rem;
+    max-width: 520px;
+    font-weight: 300;
+  }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    position: relative;
+  }
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 44px;
+    left: calc(12.5% + 20px);
+    right: calc(12.5% + 20px);
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+    opacity: 0.4;
+    z-index: 0;
+  }
+  .step {
+    position: relative;
+    z-index: 1;
+  }
+  .step-num {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--gold-light);
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    border: 2px solid var(--gold);
+  }
+  .step h3 {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+  .step p {
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  .step-icon {
+    font-size: 24px;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  /* PIECE COUNT FLOW */
+  .guarantee {
+    padding: 6rem 5rem;
+    background: var(--cream);
+  }
+  .guarantee-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .guarantee h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+  .guarantee .intro {
+    font-size: 15px;
+    color: var(--text-mid);
+    margin-bottom: 2rem;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  .flow-steps { display: flex; flex-direction: column; gap: 0; }
+  .flow-step {
+    display: flex;
+    gap: 1.25rem;
+    position: relative;
+  }
+  .flow-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .flow-dot {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 2px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--navy);
+    flex-shrink: 0;
+  }
+  .flow-dot.ok { background: #EAF5EE; border-color: #5BA872; color: #2E7049; }
+  .flow-dot.warn { background: #FFF8E6; border-color: #C9A84C; color: #7A6020; }
+  .flow-dot.bad { background: #FDECEA; border-color: #C85858; color: #8B2020; }
+  .flow-line {
+    width: 1px;
+    flex: 1;
+    background: rgba(201,168,76,0.25);
+    margin: 4px 0;
+    min-height: 28px;
+  }
+  .flow-content {
+    padding-bottom: 1.75rem;
+    flex: 1;
+  }
+  .flow-content h4 {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 0.3rem;
+  }
+  .flow-content p {
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.55;
+    font-weight: 300;
+  }
+  .flow-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-top: 5px;
+  }
+  .flow-tag.ok { background: #EAF5EE; color: #2E7049; }
+  .flow-tag.warn { background: #FFF8E6; color: #7A6020; }
+  .flow-tag.bad { background: #FDECEA; color: #8B2020; }
+
+  .guarantee-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid rgba(201,168,76,0.2);
+  }
+  .guarantee-card .card-title {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--cream-dark);
+  }
+  .promise-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+  }
+  .promise-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: var(--blue-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .promise-icon.gold { background: #FBF5E0; }
+  .promise-icon.green { background: #EAF5EE; }
+  .promise-text h4 {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 3px;
+  }
+  .promise-text p {
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  /* PERKS */
+  .perks {
+    padding: 6rem 5rem;
+    background: var(--navy);
+    color: var(--cream);
+  }
+  .perks .section-label { color: var(--gold-light); }
+  .perks h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 3rem;
+  }
+  .perks-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .perk {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    padding: 1.75rem;
+    transition: background 0.2s;
+  }
+  .perk:hover { background: rgba(255,255,255,0.09); }
+  .perk-icon {
+    font-size: 26px;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .perk h3 {
+    font-size: 16px;
+    font-weight: 500;
+    color: #E8E4DC;
+    margin-bottom: 0.5rem;
+  }
+  .perk p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* CTA */
+  .cta {
+    padding: 7rem 5rem;
+    background: var(--cream-dark);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta::before {
+    content: '🧩';
+    position: absolute;
+    font-size: 200px;
+    opacity: 0.04;
+    top: -20px;
+    left: -40px;
+    pointer-events: none;
+  }
+  .cta::after {
+    content: '🧩';
+    position: absolute;
+    font-size: 200px;
+    opacity: 0.04;
+    bottom: -20px;
+    right: -40px;
+    pointer-events: none;
+    transform: rotate(180deg);
+  }
+  .cta h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 44px;
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .cta h2 em { font-style: italic; color: var(--gold); }
+  .cta p {
+    font-size: 17px;
+    color: var(--text-mid);
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+  .cta-form {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  .cta-form input {
+    padding: 14px 20px;
+    border: 1.5px solid rgba(201,168,76,0.4);
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--text-dark);
+    width: 300px;
+    outline: none;
+  }
+  .cta-form input:focus { border-color: var(--gold); }
+  .cta-note {
+    font-size: 13px;
+    color: var(--text-light);
+  }
+
+  /* FOOTER */
+  footer {
+    background: #13202F;
+    color: rgba(255,255,255,0.4);
+    padding: 2rem 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--gold);
+  }
+  footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+  footer a:hover { color: var(--gold-light); }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-right { height: 400px; }
+    .hero-left { padding: 3rem 2rem; }
+    .founder-strip { flex-direction: column; padding: 3rem 2rem; text-align: center; }
+    .how, .guarantee, .perks, .cta { padding: 4rem 2rem; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .steps::before { display: none; }
+    .guarantee-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .perks-grid { grid-template-columns: 1fr 1fr; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Thousands of <span>Pieces</span></div>
+  <div class="nav-links">
+    <a href="#how">How it works</a>
+    <a href="#guarantee">Our guarantee</a>
+    <a href="#waitlist" class="nav-cta">Join waitlist</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">Launching soon</div>
+    <h1>Every puzzle deserves<br>a <em>second life.</em></h1>
+    <p class="hero-sub">A community for puzzle lovers to swap finished boxes with people who actually want them — matched to your taste, shipped with care.</p>
+
+    <form class="signup-form" action="https://formspree.io/f/agthomp@live.unc.edu" method="POST" onsubmit="handleSignup(event)">
+      <input type="email" name="email" id="email-input" placeholder="your@email.com" required />
+      <input type="hidden" name="_subject" value="New waitlist signup — Thousands of Pieces" />
+      <input type="hidden" name="_next" value="" />
+      <button type="submit" class="btn-primary">Notify me</button>
+    </form>
+    <p class="hero-note" id="signup-note">Founding members get their <strong>first swap free.</strong></p>
+
+    <div class="hero-social">
+      <div class="hero-stat">
+        <span class="num">2,400+</span>
+        <span class="label">On the waitlist</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">12k</span>
+        <span class="label">Puzzles ready to swap</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">48</span>
+        <span class="label">States represented</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <!-- Drop your abbey.png file in this folder and it will appear here -->
+    <img src="abbey.png" alt="Abbey, founder of Thousands of Pieces, working on a puzzle"
+         onerror="this.style.display='none'; document.getElementById('img-placeholder').style.display='flex';" />
+    <div id="img-placeholder" class="hero-img-placeholder" style="display:none;">
+      <div class="hero-img-note">
+        <strong>📸 Drop abbey.png here</strong>
+        Save the Abbey illustration as <code>abbey.png</code> in this folder and refresh.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER QUOTE -->
+<div class="founder-strip">
+  <div class="founder-img-wrap">
+    <img src="abbey.png" alt="Abbey"
+         onerror="this.style.display='none'; this.parentElement.querySelector('.founder-img-placeholder').style.display='flex';" />
+    <div class="founder-img-placeholder" style="display:none;">🧩</div>
+  </div>
+  <div class="founder-quote">
+    <span class="quote-mark">"</span>
+    <blockquote>I finished a 1,000-piece puzzle on a Sunday night and put it back on the shelf — where it sat for two years. There had to be a better way.</blockquote>
+    <div class="founder-byline">Abbey &nbsp;·&nbsp; Founder, Thousands of Pieces</div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <p class="section-label">How it works</p>
+  <h2>Simple as snapping pieces together</h2>
+  <p class="how-intro">Get started in minutes. Your first swap ships within days.</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <span class="step-icon">👤</span>
+      <h3>Create your profile</h3>
+      <p>Tell us what you love — landscapes, abstract, difficulty level, brand preferences, and how fast you puzzle.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <span class="step-icon">📷</span>
+      <h3>Scan your shelf</h3>
+      <p>Point your phone at any UPC barcode. We pull the title, piece count, brand, and image automatically.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <span class="step-icon">🎯</span>
+      <h3>Set preferences</h3>
+      <p>Themes, brands, piece count ranges. We use your taste profile to find matches you'll actually love.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <span class="step-icon">📦</span>
+      <h3>Start swapping</h3>
+      <p>We match you with a swap partner. Pre-paid labels included — ship yours, receive theirs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PIECE COUNT GUARANTEE FLOW -->
+<section class="guarantee" id="guarantee">
+  <div class="guarantee-grid">
+    <div>
+      <p class="section-label">Our guarantee</p>
+      <h2>The piece-count promise</h2>
+      <p class="intro">The biggest fear in puzzle swapping is receiving a box with missing pieces. Here's exactly how we handle it — from the moment you list a puzzle to the moment something goes wrong.</p>
+
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-left">
+            <div class="flow-dot">1</div>
+            <div class="flow-line"></div>
+          </div>
+          <div class="flow-content">
+            <h4>You list a puzzle</h4>
+            <p>Scan the UPC, add a photo of the box and the assembled puzzle. You certify the piece count is complete.</p>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="flow-left">
+            <div class="flow-dot">2</div>
+            <div class="flow-line"></div>
+          </div>
+          <div class="flow-content">
+            <h4>Matched & packaged</h4>
+            <p>We match you with a swap partner. You use our Welcome Kit mailer and pre-paid label to ship.</p>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="flow-left">
+            <div class="flow-dot ok">✓</div>
+            <div class="flow-line"></div>
+          </div>
+          <div class="flow-content">
+            <h4>Puzzle arrives — all pieces present</h4>
+            <p>You confirm receipt. Both accounts are credited. The swap is complete.</p>
+            <span class="flow-tag ok">Happy path — most swaps</span>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="flow-left">
+            <div class="flow-dot warn">!</div>
+            <div class="flow-line"></div>
+          </div>
+          <div class="flow-content">
+            <h4>Puzzle arrives — missing pieces</h4>
+            <p>You report within 48 hours with a photo. We review and issue a resolution: free replacement swap or full refund of your Welcome Kit fee, your choice.</p>
+            <span class="flow-tag warn">Handled within 24 hours</span>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="flow-left">
+            <div class="flow-dot bad">✕</div>
+          </div>
+          <div class="flow-content">
+            <h4>Repeat offenders removed</h4>
+            <p>Any swapper who triggers two missing-piece reports is suspended. One strike is forgiven (puzzles get lost in transit). Two is a pattern.</p>
+            <span class="flow-tag bad">Zero-tolerance policy</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="guarantee-card">
+      <div class="card-title">The Thousands of Pieces promise</div>
+
+      <div class="promise-item">
+        <div class="promise-icon green">🛡️</div>
+        <div class="promise-text">
+          <h4>Piece-count certified</h4>
+          <p>Every swap is self-certified by the sender. Misrepresentation suspends your account.</p>
+        </div>
+      </div>
+
+      <div class="promise-item">
+        <div class="promise-icon gold">⚡</div>
+        <div class="promise-text">
+          <h4>48-hour resolution</h4>
+          <p>Report a problem and we resolve it within two business days — no back and forth, no forms.</p>
+        </div>
+      </div>
+
+      <div class="promise-item">
+        <div class="promise-icon" style="background:#E8EDF5;">📦</div>
+        <div class="promise-text">
+          <h4>Welcome Kit shipping</h4>
+          <p>Pre-paid labels and snug-fit mailers for standard puzzle boxes. No printer, no tape measure needed.</p>
+        </div>
+      </div>
+
+      <div class="promise-item">
+        <div class="promise-icon green">💚</div>
+        <div class="promise-text">
+          <h4>Better for the planet</h4>
+          <p>Every swap is a puzzle that doesn't go to landfill. We track the impact and share it with you.</p>
+        </div>
+      </div>
+
+      <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--cream-dark);">
+        <div style="font-size: 13px; color: var(--text-light); font-weight: 300; line-height: 1.6;">
+          Missing pieces happen. They're rare, but they happen. Our policy is simple: we make it right, every time, no questions asked. That's the Thousands of Pieces guarantee.
+        </div>
+        <div style="margin-top: 1rem; font-size: 14px; font-weight: 500; color: var(--gold);">— Abbey, Founder</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERKS -->
+<section class="perks">
+  <p class="section-label">Why puzzlers love it</p>
+  <h2>More puzzles. Less clutter. Better matches.</h2>
+  <div class="perks-grid">
+    <div class="perk">
+      <span class="perk-icon">📬</span>
+      <h3>Welcome Kit included</h3>
+      <p>One-time kit with mailers sized for standard puzzle boxes and pre-paid shipping labels. Everything you need to ship.</p>
+    </div>
+    <div class="perk">
+      <span class="perk-icon">🎨</span>
+      <h3>Matched to your taste</h3>
+      <p>Our algorithm matches on theme, difficulty, and brand — not just whoever's available. No more boxes you don't want.</p>
+    </div>
+    <div class="perk">
+      <span class="perk-icon">📱</span>
+      <h3>Scan, don't type</h3>
+      <p>UPC scanning populates your shelf automatically. Add 20 puzzles in two minutes, not twenty.</p>
+    </div>
+    <div class="perk">
+      <span class="perk-icon">🤝</span>
+      <h3>Real community</h3>
+      <p>Rate your swaps, build your reputation, and discover puzzlers with similar taste. Swap with confidence.</p>
+    </div>
+    <div class="perk">
+      <span class="perk-icon">♻️</span>
+      <h3>Sustainable by design</h3>
+      <p>Every puzzle re-homed is one less in a landfill. We track and share your collective impact.</p>
+    </div>
+    <div class="perk">
+      <span class="perk-icon">🛡️</span>
+      <h3>Piece-count guarantee</h3>
+      <p>Problems are rare, but when they happen we resolve them within 48 hours. No hassle, no exceptions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="waitlist">
+  <h2>Ready to keep the<br><em>pieces moving?</em></h2>
+  <p>Join the waitlist — founding members get their first swap free.</p>
+  <form class="cta-form" action="https://formspree.io/f/agthomp@live.unc.edu" method="POST" onsubmit="handleSignup(event)">
+    <input type="email" name="email" id="email-input-2" placeholder="your@email.com" required />
+    <input type="hidden" name="_subject" value="New waitlist signup — Thousands of Pieces" />
+    <input type="hidden" name="_next" value="" />
+    <button type="submit" class="btn-primary">I'm in</button>
+  </form>
+  <p class="cta-note" id="cta-note">No spam. Just a heads-up when we launch.</p>
+</section>
+
+<footer>
+  <div class="footer-logo">Thousands of Pieces</div>
+  <div>Founded with ♥ by Abbey &nbsp;·&nbsp; <a href="mailto:hello@thousandsofpieces.com">hello@thousandsofpieces.com</a></div>
+  <div><a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Terms</a></div>
+</footer>
+
+<script>
+async function handleSignup(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('button');
+  const noteEl = form.closest('section')?.querySelector('p:last-of-type') || document.getElementById('signup-note');
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+  try {
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      btn.textContent = "You're on the list!";
+      btn.style.background = '#3D7A58';
+      if (noteEl) noteEl.textContent = "We'll be in touch soon. Keep puzzling!";
+    } else {
+      btn.textContent = 'Try again';
+      btn.disabled = false;
+      if (noteEl) noteEl.textContent = 'Something went wrong — please try again.';
+    }
+  } catch {
+    btn.textContent = 'Try again';
+    btn.disabled = false;
+  }
+}
+</script>
+
+</body>
+</html>
